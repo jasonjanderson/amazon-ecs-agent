@@ -604,6 +604,7 @@ func (task *Task) dockerHostConfig(container *Container, dockerContainerMap map[
 		Binds:        binds,
 		PortBindings: dockerPortMap,
 		VolumesFrom:  volumesFrom,
+		SecurityOpt: []string{"credentialspec=file://" + container.Name + ".json"},
 	}
 
 	err = task.SetConfigHostconfigBasedOnVersion(container, nil, hostConfig, apiVersion)
